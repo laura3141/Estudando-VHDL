@@ -1,52 +1,35 @@
-library IEEE;
-use IEEE.std_logic_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
 
---outra entidade distinta da anterior
-entity somador_completo is
-    port(
-        a: in std_logic;
-        b: in std_logic;
-        carry_in: in std_logic;
-        soma: out std_logic;
-        carry_out: out std_logic
-    );
-end somador_completo;
+entity combinacao_mux is
 
-architecture somador_completo_arch of somador_completo is
-	--componente interno da arquitetura do somador completo
-    component meio_somador is
-        port(
-            a: in std_logic;
-            b: in std_logic;
-            soma: out std_logic;
-            carry: out std_logic
-        );
+  port(e1,e2,e3,e4,sel: in std_logic;
+       s: out std_logic);
+       
+end combinacao_mux;
+
+architecture combinacao_mux_arch of combinacao_mux is
+
+	component mux is --componente interno da arquitetura
+    	port (e1, e2, sel: in std_logic;
+  			  s: out std_logic);
     end component;
-
-    -- sinais internos
-    signal S_primeira_soma: std_logic;
-    signal S_primeiro_carry: std_logic;
-    signal S_segunda_soma: std_logic;
-    signal S_segundo_carry: std_logic;
-begin
-    --somador 1 é uma instancia de meio somador
-    somador1: meio_somador
-        port map(
-            a => a, --os termos a esquerda sao a mascara, os da direita a instancia
-            b => b,
-            soma => S_primeira_soma,
-            carry => S_primeiro_carry
-        );
-
     
-    somador2: meio_somador
-        port map(
-            a => S_primeira_soma,
-            b => carry_in,
-            soma => soma,
-            carry => S_segundo_carry
-        );
-
+	signal saida_primeiro: std_logic;
     
-    carry_out <= S_primeiro_carry or S_segundo_carry;
-end somador_completo_arch;
+	begin
+
+    mux1: mux
+        port map(
+                e1 => e1,
+                e2 => e2,
+                sel => sel,
+                s => saida_primeiro);
+    mux2: mux
+        port map(
+                e1 => e3,
+                e2 => e4,
+                sel => saida_primeiro,
+                s => s);
+
+end combinacao_mux_arch;

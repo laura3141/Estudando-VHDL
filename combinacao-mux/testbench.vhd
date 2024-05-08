@@ -13,7 +13,7 @@ architecture testbench of mux_tb is
             e3: in std_logic;
             e4: in std_logic;
             sel: in std_logic;
-            s: out std_logic;
+            s: out std_logic
            
         );
     end component;
@@ -43,10 +43,17 @@ begin
     begin
         -- Test Case 1
         e1_tb <= '0';
-        e2_tb <= '0';
+        e2_tb <= '1';
         e3_tb <= '1';
-        e4_tb <= '1';
+        e4_tb <= '0';
         sel_tb <= '0';
+        wait for 10 ns;
+         -- Test Case 2
+        e1_tb <= '0';
+        e2_tb <= '1';
+        e3_tb <= '1';
+        e4_tb <= '0';
+        sel_tb <= '1';
         wait for 10 ns;
         -- End of testbench
         wait;
