@@ -1,6 +1,0 @@
-Modulo: 
-
-Entidade: define as entradas e saidas
-Arquitetura: define o comportamento da entrada para gerar uma saída
-Component: referenciar, instanciar e replicar uma determinada entidade.
-
