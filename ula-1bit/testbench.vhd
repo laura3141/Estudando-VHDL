@@ -7,13 +7,15 @@ end ula_tb;
 architecture testbench of ula_tb is
    
     component ula
-        port(a,b,carry_in,sel: in std_logic;
+ 		port(a,b,carry_in: in std_logic;
+  		sel: in std_logic_vector (1 downto 0);
        s,carry_out: out std_logic);
        
     end component;
 
     -- entradas como sinais
-    signal a_tb, b_tb, carry_in_tb, sel_tb: std_logic;
+    signal a_tb, b_tb, carry_in_tb: std_logic;
+    signal  sel_tb: std_logic_vector (1 downto 0);
     signal s_tb, carry_out_tb: std_logic;
     
 begin
@@ -36,32 +38,26 @@ begin
         	a_tb<= '0';
             b_tb <= '1';
             carry_in_tb <= '0';
-            sel_tb <= '0';
+            sel_tb <= "01";
          
         wait for 10 ns;
         
         a_tb<= '1';
             b_tb <= '1';
             carry_in_tb <= '0';
-            sel_tb <= '0';
+            sel_tb <= "10";
          
         wait for 10 ns;
          a_tb<= '1';
             b_tb <= '1';
             carry_in_tb <= '1';
-            sel_tb <= '0';
+            sel_tb <= "11";
          
         wait for 10 ns;
         a_tb<= '0';
             b_tb <= '1';
             carry_in_tb <= '0';
-            sel_tb <= '1';
-         
-        wait for 10 ns;
-            a_tb<= '1';
-            b_tb <= '1';
-            carry_in_tb <= '0';
-            sel_tb <= '1';
+            sel_tb <= "00";
          
         wait for 10 ns;
        

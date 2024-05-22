@@ -8,8 +8,8 @@ entity porta_or is
   
 end porta_or;
 
-architecture arch_porta_and of porta_and is
+architecture arch_porta_or of porta_or is
 begin
-  s<= a and b;
+  s<= a or b;
   
-end arch_porta_and;
+end arch_porta_or;
